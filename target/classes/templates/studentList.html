@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+
+<!-- Bootstrap icons -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+	
+<title>Student list table</title>
+</head>
+<body>
+	<div class="container">
+		<h1>List of Students</h1>
+		<hr>
+		<table class="table"  border="1">
+			<thead>
+				<tr>
+					<th scope="col">SN</th>
+					<th scope="col" >Full Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">College</th>
+					<th scope="col">Faculty</th>
+					<th scope="col">Program</th>
+					<th scope="col">State</th>
+					<th scope="col">District</th>
+					<th scope="col">Municipality</th>
+					<th scope="col">Ward No.</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="std : ${stdList}">
+					<th scope="row">1</th>
+					<td >[[${std.fname}]]</td>
+					<td >[[${std.email}]]</td>
+					<td>[[${std.college}]]</td>
+					<td >[[${std.faculty}]]</td>
+					<td>[[${std.programme}]]</td>
+					<td>[[${std.province}]]</td>
+					<td >[[${std.district}]]</td>
+					<td >[[${std.municipality}]]</td>
+					<td>[[${std.ward_no}]]</td>
+					<td >
+						<a th:href="@{/edit?(id = ${std.s_id})}"> <button class="btn btn-success"><i class="bi bi-pencil-square px-2"></i>Edit</button> </a>
+						<a th:href="@{/delete?(id = ${std.s_id})}"> <button onClick="warningHandle()" class="btn btn-danger"><i class="bi bi-trash3 px-2"></i>Delete</button> </a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script type="text/javascript">
+		function warningHandle(){
+			alert("Are you sure to delete this data?");
+		}
+	</script>
+</body>
+</html>
